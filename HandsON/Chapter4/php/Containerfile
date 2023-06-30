@@ -1,23 +1,12 @@
 FROM ubi8/php-74
 
-MAINTAINER Your Name <youremail>
+USER 0
+ADD ./src/ /tmp/src
+RUN chown -R 1001:0 /tmp/src
+USER 1001
 
-ENV PORT 8080
-ENV HTTPD_CONFIG_FILE /etc/httpd/conf/httpd.conf
+# Install the dependencies
+RUN /usr/libexec/s2i/assemble
 
-RUN yum install -y httpd && \
-    yum clean all
-
-RUN sed -ri -e "/^Listen 80/c\Listen ${PORT}" ${HTTPD_CONFIG_FILE} && \
-    chown -R apache:apache /etc/httpd/logs/ && \
-    chown -R apache:apache /run/httpd/
-
-USER apache
-
-# Expose the custom port that you provided in the ENV var
-EXPOSE ${PORT}
-
-# Copy all files under src/ folder to Apache DocumentRoot (/var/www/html)
-COPY ./src/ /var/www/html/
-
-# Start Apache in the foreground
+# Set the default command for the resulting image
+CMD /usr/libexec/s2i/run
