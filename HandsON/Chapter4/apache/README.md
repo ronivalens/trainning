@@ -22,6 +22,6 @@ Edite o Containerfile e garanta que ele cumpra as seguintes especificações:
 • A pasta src contém um único arquivo index.html que imprime uma mensagem Hello, World!.
 
 • Inicie o daemon httpd do Apache em primeiro plano usando a instrução CMD e o seguinte comando:
-'''
+```
 httpd -D FOREGROUND
-'''
+```
