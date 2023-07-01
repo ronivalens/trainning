@@ -3,11 +3,11 @@ Revise o contudo do arquivo Containerfile fornecido na pasta neste diretório.
 
 Edite o Containerfile e garanta que ele cumpra as seguintes especificações:
 
-• A imagem de base é ubi8/ubi:8.5
+• A imagem de base é ```ubi8/ubi:8.5```
 
-• Define o nome de autor e a ID de e-mail desejados com a instrução MAINTAINER.
+• Define o nome de autor e a ID de e-mail desejados com a instrução ```MAINTAINER```.
 
-• Define a variável de ambiente PORT como 8080
+• Define a variável de ambiente ```PORT``` como ```8080```
 
 • Instale o Apache (pacote httpd).
 
