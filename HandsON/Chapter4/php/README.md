@@ -2,7 +2,7 @@
 
 1. Realize o deploy da aplicação de calculadora de conversão de celcius para farenheit, utilizando a imagem ubi8/php-74.
 
-2. Utilize os scripts Source-to-Image e criar uma imagem usando um Dockerfile, crie um Dockerfile com este conteúdo:
+2. Utilize os scripts Source-to-Image e criar uma imagem usando um Dockerfile, crie um Containerfile com um conteúdo como este, adaptando conforme sua necessidade:
    ```
    FROM ubi8/php-74
    # Add application sources to a directory that the assemble script expects them
