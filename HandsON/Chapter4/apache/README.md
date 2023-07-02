@@ -1,4 +1,4 @@
-# HandsOn
+# Instruções
 Revise o contudo do arquivo Containerfile fornecido na pasta neste diretório.
 
 Edite o Containerfile e garanta que ele cumpra as seguintes especificações:
@@ -24,4 +24,19 @@ Edite o Containerfile e garanta que ele cumpra as seguintes especificações:
 • Inicie o daemon httpd do Apache em primeiro plano usando a instrução CMD e o seguinte comando:
 ```
 httpd -D FOREGROUND
+```
+
+## Prática
+1. Construa um imagem de contêiner com o nome ```tjms/apache```
+2. Execute o contêiner com o nome ```containerfile```, em segundo plano, na porta 20080 do host.
+
+## Critério de Sucesso:
+Para validar seu laboratório, execute o comando abaixo, o retorno deverá ser o conforme conteudo abaixo:
+```
+curl localhost:20080
+<html>
+  <body>
+    <h1>Hello, World!</h1>
+  </body>
+</html>
 ```
