@@ -21,3 +21,5 @@
 
 Use a documentação do [link](https://catalog.redhat.com/software/containers/ubi8/php-74/5f521244e05bbcd88f128b63?container-tabs=overview)
 
+3. Construa um imagem de contêiner com o nome ```tjms/php```
+Execute o contêiner com o nome ```php```, em segundo plano, na porta ```20081``` do host.
