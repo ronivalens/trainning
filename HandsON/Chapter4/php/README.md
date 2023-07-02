@@ -17,4 +17,5 @@ podman run --help
 
 ## Critério de Sucesso:
 Para validar seu laboratório, acesse da sua maquina o endereço: http://<ip_do_host>:20081, voce vera uma tela conforme imagem abaixo:
+
 (images/calculate.png?raw=true)
