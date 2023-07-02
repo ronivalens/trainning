@@ -11,10 +11,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "Por favor, preencha todos os campos.";
     } else {
         // Conexão com o banco de dados (substitua as credenciais de acordo com seu ambiente)
-        $servername = "localhost";
-        $username = "seu_usuario";
-        $password = "sua_senha";
-        $database = "seu_banco_de_dados";
+        $servername = "mysql";
+        $username = "cadastro";
+        $password = "UxrsHuI1LdBsuDnM";
+        $database = "cadastrodb";
 
         $conn = new mysqli($servername, $username, $password, $database);
 
