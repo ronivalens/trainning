@@ -16,7 +16,7 @@ oc new-project ubi-echo
 3. Crie um novo aplicativo chamado "echo" do Containerfile na pasta ubi-echo. Ele cria, entre outros recursos, uma ```buildConfig```:
 
 ```
-oc new-app --name echo https://github.com/netoralves/training --context-dir HandsON/Chapter4/ubi-echo 
+oc new-app --name echo https://github.com/```USERNAME```/training --context-dir HandsON/Chapter4/ubi-echo 
 ```
 
 4. Acompanhe os logs de build:
@@ -33,41 +33,74 @@ oc status
 
 6. Aguarde o pod do aplicativo estar pronto e ser executado. Repita o comando oc get pod até que a saída seja semelhante à seguinte:
 
-
-
-
-Passo 6: Agora você está pronto para usar o comando `oc new-app`. Existem várias opções disponíveis, dependendo da origem do seu aplicativo. Aqui estão alguns exemplos:
-
-- Criar um aplicativo a partir de um repositório Git:
+```
+[core@00-1c-42-33-b1-09 ubi-echo]$ oc get pods
+NAME                    READY   STATUS      RESTARTS   AGE
+echo-1-build            0/1     Completed   0          43s
+echo-764d7dfccb-8n2k4   1/1     Running     0          30s
+```
+7. Exiba os logs de pod do aplicativo para mostrar que a imagem de contêiner do aplicativo está produzindo a saída esperada no OpenShift. Use o nome do pod do aplicativo que obteve na etapa anterior:
 
 ```
-oc new-app <URL_do_repositório_Git>
+[core@00-1c-42-33-b1-09 ubi-echo]$ oc logs echo-764d7dfccb-8n2k4 | tail -n 3
+test
+test
+test
 ```
 
-- Criar um aplicativo a partir de uma imagem de contêiner:
+8. Inspecione a configuração da build:
 
 ```
-oc new-app <nome_da_imagem_do_contêiner>
+oc describe bc echo
 ```
 
-- Criar um aplicativo a partir de um modelo pré-definido:
+9. Revise o imageStream:
 
 ```
-oc new-app --template=<nome_do_modelo>
+oc describe bc echo
 ```
 
-Passo 7: Após executar o comando `oc new-app`, o OpenShift 4.13 iniciará o processo de criação e implantação do aplicativo. Você pode acompanhar o progresso usando o comando `oc logs` seguido do nome do pod do aplicativo.
+10. Revise o Deployment:
 
 ```
-oc logs <nome_do_pod>
+oc describe deployment echo
 ```
 
-Passo 8: Uma vez que o aplicativo esteja em execução, você pode expô-lo externamente usando o comando `oc expose`.
+11. Altere o aplicativo:
 
 ```
-oc expose svc/<nome_do_serviço>
+FROM registry.access.redhat.com/ubi8/ubi:8.0
+USER 1001
+CMD bash -c "while true; do (( i++ )); echo test \$i; sleep 5; done"
 ```
 
-Passo 9: Agora você pode acessar seu aplicativo implantado usando o endereço fornecido pela rota exposta.
+12. Confirme e envie por push as alterações para o Git:
 
-Parabéns! Você concluiu com sucesso o tutorial de uso do comando `oc new-app` no OpenShift 4.13. Agora você pode implantar facilmente seus aplicativos no ambiente OpenShift, seja a partir de um repositório Git, uma imagem de contêiner ou um modelo pré-definido.
+```
+git commit -a -m 'Add a counter'
+git push
+```
+
+13. Inicialize uma nova build:
+
+```
+oc start-build echo
+```
+
+14. Acompanhe os novos logs da build:
+
+```
+oc logs -f bc/echo
+```
+
+15. Compare o status do imageStream antes e depois de recompilar o aplicativo. Inspecione o status atual do fluxo de imagem:
+```
+oc describe is echo
+...
+ * image-registry.openshift-image-registry.svc:5000/youruser-docker-build/
+echo@sha256:025a...542f
+      2 minutes ago
+    image-registry.openshift-image-registry.svc:5000/youruser-docker-build/
+echo@sha256:5bbf...ef0b
+```
+Obs.: A que url da imagem que é apresentada em primeiro, é a nova imagem gerada, a segunda apresentada é a mais antiga.
