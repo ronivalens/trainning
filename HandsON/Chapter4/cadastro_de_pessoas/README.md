@@ -29,7 +29,6 @@ MySQL Database Name: cadastrodb
 ```
 mysql -u $MYSQL_USER -p$MYSQL_PASSWORD -h $HOSTNAME $MYSQL_DATABASE
 
-
 mysql> USE cadastrodb;
 
 mysql> CREATE TABLE pessoas (
@@ -40,7 +39,6 @@ mysql> CREATE TABLE pessoas (
 );
 Query OK, 0 rows affected (0.02 sec)
 ```
-
 
 9. Verifique a tabela criada:
 ```
@@ -55,6 +53,32 @@ mysql> DESCRIBE pessoas;
 +----------+--------------+------+-----+---------+----------------+
 4 rows in set (0.00 sec)
 ```
-
 Ref.: https://docs.openshift.com/online/pro/using_images/db_images/mysql.html
 
+# Deploy da App
+
+1. Com a visão de ```Developer``` no webconsole, acesse a aba ```+Add```
+
+2. Na tela inicial, certifique que esta no projeto ```cadastro-pessoas``` e clique em ```All services```
+
+3. No campo de pesquisa, procure por php, e use o item ```PHP (Builder Images)```, em seguida clique em ```Create```
+
+4. No formulário de criação, altere os seguintes campos conforme abaixo(mantenha os demais):
+```
+Builder Image version: 74-ubi8
+Git Repo URL: https://github.com/netoralves/trainning.git
+Show Advanced Git Options
+  Context dir: /HandsON/Chapter4/cadastro_de_pessoas/src
+  Application: Create application
+  Application name: cadastro-pessoas
+  Name: cadastro-pessoas
+```
+Clique em ```Create```
+
+5. Na tela ```Topology```, clique em Builds > Build #1 > View logs e verifique nos logs se o processo de build foi executado com sucesso;
+
+6. Volte a tela ```Topology```, no Deployment ```cadastro-pessoas```, verifique se o Pod cadastro pessoas está com status "Running".
+
+7. Se todas as validações acima estão OK, role na aba ao lado com o item DC cadastro-pessoas selecionado, e clique em Routes > Locations: > Link para acesso a app, voce será redirecionado para a tela da sua aplicação implantada.
+
+![](images/cadastro-pessoas.png?raw=true)
