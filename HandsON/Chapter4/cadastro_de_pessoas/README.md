@@ -27,7 +27,8 @@ MySQL Database Name: cadastrodb
 8. Na pagina do Pod, acesse a aba ```Terminal```, e execute os seguintes comandos:
 
 ```
-mysql -u $MYSQL_USER -p$MYSQL_PASSWORD -h $HOSTNAME $MYSQL_DATABASE --socket=/var/lib/mysql/mysqlx.sock
+mysql -u $MYSQL_USER -p$MYSQL_PASSWORD -h $HOSTNAME $MYSQL_DATABASE
+
 
 mysql> USE cadastrodb;
 
@@ -37,9 +38,23 @@ mysql> CREATE TABLE pessoas (
     email VARCHAR(100) NOT NULL,
     telefone VARCHAR(20) NOT NULL
 );
-
+Query OK, 0 rows affected (0.02 sec)
 ```
+
 
 9. Verifique a tabela criada:
 ```
+mysql> DESCRIBE pessoas;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| id       | int          | NO   | PRI | NULL    | auto_increment |
+| nome     | varchar(100) | NO   |     | NULL    |                |
+| email    | varchar(100) | NO   |     | NULL    |                |
+| telefone | varchar(20)  | NO   |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+```
+
+Ref.: https://docs.openshift.com/online/pro/using_images/db_images/mysql.html
 
