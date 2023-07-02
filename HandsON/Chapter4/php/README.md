@@ -7,14 +7,13 @@ Dica: Para usar os scripts Source-to-Image e criar uma imagem usando um Containe
 podman build --help
 ```
 
-3. Construa um imagem de contêiner com o nome ```tjms/php```
+2. Construa um imagem de contêiner com o nome ```tjms/php```
 Execute o contêiner com o nome ```php```, em segundo plano, na porta ```20081``` do host.
 
 Dica: Consulte [documentação do Podman](https://docs.podman.io/en/latest/markdown/podman-run.1.html) ou execute o comando
 ```
 podman run --help
 ```
-
 
 ## Critério de Sucesso:
 Para validar seu laboratório, acesse da sua maquina o endereço: http://<ip_do_host>:20081, voce vera uma tela conforme imagem abaixo:
