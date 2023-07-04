@@ -40,7 +40,7 @@ restorecon -R /var/nfsshare
 ## Testing
 ```
 mkdir /mnt/nfs4
-mount -t nfs nfs-server:/var/nfsshare /mnt/nfsv4
+mount -t nfs <nfs-server>:/var/nfsshare /mnt/nfsv4
 touch /mnt/1 && rm -f /mnt/1
 ```
 
