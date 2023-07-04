@@ -50,11 +50,28 @@ oc new-project nfs-storage
 oc label namespace nfs-storage "openshift.io/cluster-monitoring=true"
 NAMESPACE=`oc project -q`
 sed -i'' "s/namespace:.*/namespace: $NAMESPACE/g" ./deploy/rbac.yaml
+
+# x86_64 Architecture
+sed -i'' "s/namespace:.*/namespace: $NAMESPACE/g" ./deploy/deployment.yaml
+
+# ARM64 Architecture
 sed -i'' "s/namespace:.*/namespace: $NAMESPACE/g" ./deploy/deployment-arm64.yaml
+
+# Create Roles and ClusterRoles:
 oc create -f deploy/rbac.yaml
 oc adm policy add-scc-to-user hostmount-anyuid system:serviceaccount:$NAMESPACE:nfs-client-provisioner
-vi deploy/class.yaml
-vi deploy/deployment-arm64.yaml
+
+# Deply StorageClass
+oc create -f deploy/class.yaml
+
+
+# ARM64 Architecture
+oc create -f deploy/deployment-arm64.yaml
+
+# x86_64 Architecture
+oc create -f deploy/deployment.yaml
+
+# Set Default StorageClass
 oc patch storageclass managed-nfs-storage -p '{"metadata": {"annotations": {"storageclass.kubernetes.io/is-default-class": "true"}}}'
 ```
 
