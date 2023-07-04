@@ -48,3 +48,5 @@ oc expose svc
 ```
 
 5.2. Acesse a webconsole: Networking > Route > Selecione o projeto ```springboot``` e clique no link ```Location``` da rota ```springboot```.
+
+6. Atualize o código no seu repositório 
