@@ -44,9 +44,19 @@ httpd -D FOREGROUND
 1. Construa um imagem de contêiner com o nome ```tjms/apache```, desabilite o armazenamento de imagens intermediárias em cache durante o processo de construção (o padrão é true).
 Dica.: Consulte [documentação do Podman](https://docs.podman.io/en/latest/markdown/podman-build.1.html)
 
+R.
+```
+cd trainning/HandsON/Chapter4/apache
+podman build --layers=false -t tjms/apache .
+```
+
 3. Execute o contêiner com o nome ```containerfile```, em segundo plano, na porta 20080 do host.
 Dica: Consulte [documentação do Podman](https://docs.podman.io/en/latest/markdown/podman-run.1.html)
 
+R.
+```
+podman run -d --name php -p 20080:8080 tjms/apache
+```
 ## Critério de Sucesso:
 Para validar seu laboratório, execute o comando abaixo, o retorno deverá ser o conforme conteudo abaixo:
 ```
