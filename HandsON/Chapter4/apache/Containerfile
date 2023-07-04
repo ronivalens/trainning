@@ -1,9 +1,9 @@
-FROM
+FROM ubi8/ubi:8.5
 
-MAINTAINER Your Name <youremail>
+MAINTAINER Your Name <fneto@alltechsolucoes.com.br>
 
-ENV PORT
-ENV HTTPD_CONFIG_FILE 
+ENV PORT 8080
+ENV HTTPD_CONFIG_FILE /etc/httpd/conf/httpd.conf
 
 RUN yum install -y httpd && \
     yum clean all
@@ -13,10 +13,11 @@ RUN sed -ri -e "/^Listen 80/c\Listen ${PORT}" ${HTTPD_CONFIG_FILE} && \
     chown -R apache:apache /run/httpd/
 
 USER apache
-
 # Expose the custom port that you provided in the ENV var
 EXPOSE ${PORT}
 
 # Copy all files under src/ folder to Apache DocumentRoot (/var/www/html)
+COPY ./src/ /var/www/html/
 
 # Start Apache in the foreground
+CMD ["httpd", "-D", "FOREGROUND"]
