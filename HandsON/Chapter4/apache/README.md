@@ -1,3 +1,17 @@
+# Antes de iniciar:
+## 1. Fork de repositórios GitHub
+
+1.1 Para fazer fork de um repositório no GitHub, navegue até o repositório e clique em Fork no canto superior direito. Certifique-se de clicar em Fork e não no número ao lado do botão.
+
+1.2 Selecione seu nome de usuário como destino e aguarde o processo ser finalizado.
+
+1.3. Ao clonar o repositório para sua estação de trabalho, use a URL para seu fork que pode ser
+encontrada clicando em Code. 
+
+## Criação de um token de acesso pessoal do GitHub
+
+Se você ainda não tem um token de acesso pessoal, use o guia Criação de token de acesso pessoal [https://docs.github.com/en/github/authenticating-to-github/keeping-your-account- and-data-secure/creating-a-personal-access-token] para criar um.
+
 # Instruções
 Revise o contudo do arquivo Containerfile fornecido na pasta neste diretório.
 
