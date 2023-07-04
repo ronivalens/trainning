@@ -46,7 +46,6 @@ touch /mnt/1 && rm -f /mnt/1
 
 ## Deploy nfs-provisioner
 ```
-oc new-project openshift-nfs-storage
 oc new-project nfs-storage
 oc label namespace nfs-storage "openshift.io/cluster-monitoring=true"
 NAMESPACE=`oc project -q`
