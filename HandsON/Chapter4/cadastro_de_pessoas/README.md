@@ -55,6 +55,8 @@ mysql> DESCRIBE pessoas;
 ```
 Ref.: https://docs.openshift.com/online/pro/using_images/db_images/mysql.html
 
+Obs.: Até aqui nosso database com a estrutura de dados está criado!
+
 # Deploy da App
 
 1. Com a visão de ```Developer``` no webconsole, acesse a aba ```+Add```
