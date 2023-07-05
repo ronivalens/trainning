@@ -105,4 +105,4 @@ oc get route php-helloworld --output jsonpath={.spec.host}
 
 8. Copie sua URL no navegador e execute a conversão de teste, você terá um resultado parecido com este:
 
-![](images/calculate.png?raw=true)
+![](images/calculate2.png?raw=true)
