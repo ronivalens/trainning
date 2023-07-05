@@ -16,7 +16,7 @@ oc new-project ubi-echo
 3. Crie um novo aplicativo chamado "echo" do Containerfile na pasta ubi-echo. Ele cria, entre outros recursos, uma ```buildConfig```:
 
 ```
-oc new-app --name echo https://github.com/```USERNAME```/training --context-dir HandsON/Chapter4/ubi-echo 
+oc new-app --name echo https://github.com/netoralves/training --context-dir HandsON/Chapter4/ubi-echo 
 ```
 
 4. Acompanhe os logs de build:
@@ -39,6 +39,7 @@ NAME                    READY   STATUS      RESTARTS   AGE
 echo-1-build            0/1     Completed   0          43s
 echo-764d7dfccb-8n2k4   1/1     Running     0          30s
 ```
+
 7. Exiba os logs de pod do aplicativo para mostrar que a imagem de contêiner do aplicativo está produzindo a saída esperada no OpenShift. Use o nome do pod do aplicativo que obteve na etapa anterior:
 
 ```
@@ -66,7 +67,11 @@ oc describe bc echo
 oc describe deployment echo
 ```
 
-11. Altere o aplicativo:
+## Alteração do aplicativo:
+
+Obs.: Se voce não realizou o fork do repositório para sua conta, acompanhe comigo os passos executados abaixo:
+
+1. Altere o aplicativo:
 
 ```
 FROM registry.access.redhat.com/ubi8/ubi:8.0
@@ -74,7 +79,7 @@ USER 1001
 CMD bash -c "while true; do (( i++ )); echo test \$i; sleep 5; done"
 ```
 
-12. Confirme e envie por push as alterações para o Git:
+2. Confirme e envie por push as alterações para o Git:
 
 ```
 git commit -a -m 'Add a counter'
@@ -103,4 +108,4 @@ echo@sha256:025a...542f
     image-registry.openshift-image-registry.svc:5000/youruser-docker-build/
 echo@sha256:5bbf...ef0b
 ```
-Obs.: A que url da imagem que é apresentada em primeiro, é a nova imagem gerada, a segunda apresentada é a mais antiga.
+Obs.: A url da imagem que é apresentada em primeiro, é a nova imagem gerada, a segunda apresentada é a mais antiga.
