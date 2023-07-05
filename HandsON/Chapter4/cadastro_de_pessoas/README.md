@@ -14,7 +14,7 @@ Display Name: Sistema de Cadastro de Pessoas
 
 5. Clique no template ```MySQL```, em seguida clique em ```Instantiate Template```
 
-6. Informe ou altere os seguintes campos no formulario(não altere os demais campos), e clique em ```Create`:
+6. Informe ou altere os seguintes campos no formulario(não altere os demais campos), e clique em ```Create```:
 
 ```
 MySQL Connection Username: cadastro
