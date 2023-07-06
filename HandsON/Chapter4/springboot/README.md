@@ -25,7 +25,7 @@ oc import-image ubi8/openjdk-8:1.16-1.1687182685 --from=registry.access.redhat.c
 
 3.1. Para arquitetura x86_64:
 ```
-oc new-app --strategy=source --name springboot --context-dir HandsON/Chapter4/springboot  springboot/openjdk18-openshift:1.15-6.1687264188~https://github.com/netoralves/trainning.git
+oc new-app --strategy=source --name springboot --context-dir HandsON/Chapter4/springboot  openjdk18-openshift:1.15-6.1687264188~https://github.com/netoralves/trainning.git
 ```
 
 3.2. Para arquitetura ARM64:
