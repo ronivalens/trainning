@@ -16,7 +16,7 @@ oc new-project ubi-echo
 3. Crie um novo aplicativo chamado "echo" do Containerfile na pasta ubi-echo. Ele cria, entre outros recursos, uma ```buildConfig```:
 
 ```
-oc new-app --name echo https://github.com/netoralves/trainning --context-dir HandsON/Chapter4/ubi-echo
+oc new-app --name echo https://github.com/netoralves/trainning.git --context-dir HandsON/Chapter4/ubi-echo
 ```
 
 
