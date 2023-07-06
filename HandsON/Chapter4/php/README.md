@@ -50,7 +50,12 @@ NAME                                            IMAGE REPOSITORY                
 imagestream.image.openshift.io/php-helloworld   image-registry.openshift-image-registry.svc:5000/php-helloworld/php-helloworld   latest   3 minutes ago
 ```
 
-Com isso a build da sua imagem já está pronta para ser utilizada.
+6. Com isso a build da sua imagem já está pronta para ser utilizada.
+```
+oc new-app php-helloworld -l app=php-helloworld
+```
+
+
 
 6. Vamos agora usar esta imagem gerada da build para implantar sua aplicação:
 
