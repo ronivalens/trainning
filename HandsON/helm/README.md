@@ -103,6 +103,7 @@ Adicione as seguintes linhas ao final do arquivo ```values.yaml```:
 ```
 mariadb:
   auth:
+    rootPassword: rootPassword
     username: quotes
     password: quotespwd
     database: quotesdb
