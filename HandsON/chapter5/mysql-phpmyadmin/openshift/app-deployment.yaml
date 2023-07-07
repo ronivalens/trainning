@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -o ./openshift/
+    kompose.version: 1.28.0 (c4137012e)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: app
+  name: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: app
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -o ./openshift/
+        kompose.version: 1.28.0 (c4137012e)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/mysql-phpmyadmin-default: "true"
+        io.kompose.service: app
+    spec:
+      containers:
+        - env:
+            - name: DATABASE_ENABLE_SSL
+              value: "false"
+            - name: DATABASE_HOST
+              value: db
+            - name: DATABASE_PORT_NUMBER
+              value: "3306"
+            - name: PHPMYADMIN_ALLOW_REMOTE_CONNECTIONS
+              value: "true"
+            - name: PMA_ARBITRARY
+              value: "1"
+          image: bitnami/phpmyadmin:latest
+          name: app
+          ports:
+            - containerPort: 8080
+          resources: {}
+      restartPolicy: Always
+status: {}

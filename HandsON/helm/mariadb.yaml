@@ -1,0 +1,11 @@
+mariadb:
+  auth:
+    rootPassword: rootPassword
+    username: quotes
+    password: quotespwd
+    database: quotesdb
+  primary:
+    podSecurityContext:
+      enabled: false
+    containerSecurityContext:
+      enabled: false

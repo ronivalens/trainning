@@ -14,7 +14,7 @@ Display Name: Sistema de Cadastro de Pessoas
 
 5. Clique no template ```MySQL```, em seguida clique em ```Instantiate Template```
 
-6. Informe ou altere os seguintes campos no formulario(não altere os demais campos), e clique em ```Create`:
+6. Informe ou altere os seguintes campos no formulario(não altere os demais campos), e clique em ```Create```:
 
 ```
 MySQL Connection Username: cadastro
@@ -55,6 +55,8 @@ mysql> DESCRIBE pessoas;
 ```
 Ref.: https://docs.openshift.com/online/pro/using_images/db_images/mysql.html
 
+Obs.: Até aqui nosso database com a estrutura de dados está criado!
+
 # Deploy da App
 
 1. Com a visão de ```Developer``` no webconsole, acesse a aba ```+Add```
@@ -81,4 +83,26 @@ Clique em ```Create```
 
 7. Se todas as validações acima estão OK, role na aba ao lado com o item DC cadastro-pessoas selecionado, e clique em Routes > Locations: > Link para acesso a app, voce será redirecionado para a tela da sua aplicação implantada.
 
+8. Cadastro um item pelo formulário, e clique em cadastrar;
+   
+10. Se o cadastro foi realizado com sucesso, voce receberá esta mensagem: 
+
 ![](images/cadastro-pessoas.png?raw=true)
+
+11. Agora vamos consultar os dados no banco.
+12. Volte a tela do webconsole ```Topology```, no ```DC mysql```, clique na aba ```Resources``` > ```Pods``` > ```mysql-<build>-<hash>```, e clique na aba terminal:
+
+13. Com o terminal do Pod aberto, acesse o banco e consulte os dados da tabela pessoas:
+```
+mysql -u $MYSQL_USER -p$MYSQL_PASSWORD -h $HOSTNAME $MYSQL_DATABASE
+mysql> USE cadastrodb;
+Database changed
+mysql> SELECT * FROM pessoas; 
++----+----------------+----------------------+-------------+
+| id | nome           | email                | telefone    |
++----+----------------+----------------------+-------------+
+|  1 | Francisco Neto | XXXXXXXXXX@gmail.com | 61XXXXXXXXX |
++----+----------------+----------------------+-------------+
+1 row in set (0.01 sec)
+```
+Isso Conclui a nossa prática.

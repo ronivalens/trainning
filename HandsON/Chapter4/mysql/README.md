@@ -1,14 +1,17 @@
 # Instruções
 1. Acesse via SSH o SNO
+   1.1. No Console Web logado com seu usuario, no canto superior direito, clique no nome do seu usuario, em seguida na opção ```Copy login command```, vc será redirecionado a uma outra pagina com o link ```Display Token```, clique nele e copie o comando ```Log in with this token```;
+   
+   1.2. Abra um terminal e cole o comando.
+   
 ```
-ssh core@<ipAddress>
+oc login --token=sha256~...
 ```
 
-2.  Faça login no cluster Openshift
-oc login -u kubeadmin -p <senha> api.<ClusterName>.<Domain>
-
-3. Crie um projeto chamado mysql-openshift
+2. Crie um projeto chamado mysql-openshift
+```
 oc new-project mysql-openshift
+```
 
 4. Crie um novo aplicativo a partir do template mysql-persistent usando o comando oc new-app, com os seguintes parametros:
 ```
@@ -19,7 +22,7 @@ MYSQL_ROOT_PASSWORD=r00tpa55
 VOLUME_CAPACITY=10Gi
 ```
 
-Use a opção --template com o comando oc new-app para especificar um template com armazenamento persistente para que o OpenShift não faça pull da imagem da Internet:
+  4.1. Use a opção --template com o comando oc new-app para especificar um template com armazenamento persistente para que o OpenShift não faça pull da imagem da Internet:
 
 ```
 oc new-app --template=mysql-persistent -p MYSQL_USER=user1 -p MYSQL_PASSWORD=mypa55 -p MYSQL_DATABASE=testdb -p MYSQL_ROOT_PASSWORD=r00tpa55 -p VOLUME_CAPACITY=10Gi
