@@ -5,10 +5,12 @@
 replicaCount: 1
 
 image:
-  repository: quay.io/redhattraining/famous-quotes
+  #repository: quay.io/redhattraining/famous-quotes
+  repository: bitnami/phpmyadmin
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "2.1"
+  #tag: "2.1"
+  tag: "latest"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -83,6 +85,7 @@ affinity: {}
 
 mariadb:
   auth:
+    rootPassword: rootPassword
     username: quotes
     password: quotespwd
     database: quotesdb
@@ -97,7 +100,8 @@ env:
     value: "famousapp-mariadb"
   - name: "QUOTES_DATABASE"
     value: "quotesdb"
-  - name: "QUOTES_USER"
-    value: "quotes"
-  - name: "QUOTES_PASSWORD"
-    value: "quotespwd"
+  - name: "DATABASE_HOST"
+    value: "famousapp-mariadb"
+
+envSecrets:
+  secretName: env-secrets
