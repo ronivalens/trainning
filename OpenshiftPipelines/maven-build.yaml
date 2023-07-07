@@ -1,0 +1,14 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: maven-build
+spec:
+  workspaces:
+   - name: filedrop
+  steps:
+  - name: build
+    image: maven:3.6.0-jdk-8-slim
+    command:
+    - /usr/bin/mvn
+    args:
+    - install
